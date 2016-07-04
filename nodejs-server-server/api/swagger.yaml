@@ -1,0 +1,217 @@
+---
+swagger: "2.0"
+info:
+  version: "2.1.0"
+  title: "<PBXDom API>"
+host: "api.pbxdom.com"
+schemes:
+- "https"
+paths:
+  /Calls:
+    get:
+      description: "Gets `Calls` info.\n"
+      operationId: "callsGET"
+      parameters:
+      - name: "rptType"
+        in: "query"
+        description: "Report type. (0 report, 1 widget, 2 chart)."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "rptId"
+        in: "query"
+        description: "Report id."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "start"
+        in: "query"
+        description: "Start offset."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "limit"
+        in: "query"
+        description: "Number of results to return. Max 10K."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "sortBy"
+        in: "query"
+        description: "Sort column."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "sortType"
+        in: "query"
+        description: "Sort mode asc/desc."
+        required: false
+        type: "string"
+        format: "asc/desc"
+      - name: "fromDate"
+        in: "query"
+        description: "Start date time."
+        required: false
+        type: "string"
+        format: "datetime"
+      - name: "toDate"
+        in: "query"
+        description: "End date time."
+        required: false
+        type: "string"
+        format: "datetime"
+      - name: "duration"
+        in: "query"
+        description: "Duration range."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "phone"
+        in: "query"
+        description: "List of caller phone."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "phone1"
+        in: "query"
+        description: "List of dialled phones."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "co"
+        in: "query"
+        description: "List of trunk/co."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "ext"
+        in: "query"
+        description: "list of extensions."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "pbxId"
+        in: "query"
+        description: "list of PBX Ids."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "callSource"
+        in: "query"
+        description: "list of callsource."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "callType"
+        in: "query"
+        description: "list of call type signatures.(5 Unanswered Calls, 7 Transfered\
+          \ Calls, 8 Forwarded Calls)"
+        required: false
+        type: "number"
+        format: "number"
+      - name: "direction"
+        in: "query"
+        description: "list of direction.(0 incoming, 1 outgoing, 2 internal)"
+        required: false
+        type: "number"
+        format: "number"
+      - name: "callerName"
+        in: "query"
+        description: "list of caller name."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "did"
+        in: "query"
+        description: "list of did."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "dnis"
+        in: "query"
+        description: "list of dnis."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "acc"
+        in: "query"
+        description: "list of account code."
+        required: false
+        type: "string"
+        format: "string"
+      - name: "ring"
+        in: "query"
+        description: "Ring range.Seconds unit."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "cost"
+        in: "query"
+        description: "Cost range."
+        required: false
+        type: "number"
+        format: "number"
+      - name: "group"
+        in: "query"
+        description: "Department/Group id."
+        required: false
+        type: "number"
+        format: "number"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            title: "ArrayOfCalls"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+  /Features/charts:
+    get:
+      description: "Gets `Charts` list.\n"
+      operationId: "featuresChartsGET"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            title: "ArrayofCharts"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+  /Features/reports:
+    get:
+      description: "Gets `Reports` list.\n"
+      operationId: "featuresReportsGET"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            title: "ArrayofReports"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+  /Features/widget:
+    get:
+      description: "Gets `Widgets` list.\n"
+      operationId: "featuresWidgetGET"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "array"
+            title: "ArrayofWidgets"
+            items:
+              $ref: "#/definitions/inline_response_200"
+      x-swagger-router-controller: "Default"
+definitions:
+  inline_response_200:
+    properties:
+      name:
+        type: "string"
+      single:
+        type: "boolean"
